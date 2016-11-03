@@ -20,6 +20,8 @@
 //
 #endregion
 
+using System.Collections;
+
 namespace Jayrock.JsonRpc
 {
     #region Imports
@@ -143,6 +145,22 @@ namespace Jayrock.JsonRpc
             writer.WriteLine("For more information, visit http://jayrock.berlios.de/");
 
             return writer.GetStringBuilder().ToString();
+        }
+
+        /// <summary>
+        /// 加密输出数据
+        /// </summary>
+        public virtual IDictionary EncryptResponse(IDictionary response)
+        {
+            return response;
+        }
+
+        /// <summary>
+        /// 解密输入数据
+        /// </summary>
+        public virtual TextReader DecryptRequest(string request)
+        {
+            return new StringReader(request);
         }
     }
 }

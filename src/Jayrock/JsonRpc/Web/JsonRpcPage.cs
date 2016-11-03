@@ -146,13 +146,23 @@ namespace Jayrock.JsonRpc.Web
             get { return ServiceClass.Name; }
         }
 
-        private sealed class MethodNameComparer : IComparer
+        protected sealed class MethodNameComparer : IComparer
         {
             public int Compare(object x, object y)
             {
                 Method methodX = (Method) x;
                 Method methodY = (Method) y;
                 return string.Compare(methodX.Name, methodY.Name, false, CultureInfo.InvariantCulture);
+            }
+        }
+
+        protected sealed class ModuleComparer : IComparer//Ä£¿éÅÅÐò
+        {
+            public int Compare(object x, object y)
+            {
+                Method methodX = (Method)x;
+                Method methodY = (Method)y;
+                return string.Compare(methodX.Module, methodY.Module, false, CultureInfo.InvariantCulture);
             }
         }
     }

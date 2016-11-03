@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
@@ -148,6 +148,9 @@
     <Compile Include="JsonRpc\JsonRpcHelpAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="JsonRpc\JsonRpcHelpInputAttribute.cs" />
+    <Compile Include="JsonRpc\JsonRpcHelpModuleAttribute.cs" />
+    <Compile Include="JsonRpc\JsonRpcHelpOutputAttribute.cs" />
     <Compile Include="JsonRpc\JsonRpcMethodAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -166,12 +169,14 @@
     <Compile Include="JsonRpc\JsonRpcTrace.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="JsonRpc\JsonType.cs" />
     <Compile Include="JsonRpc\Web\AppVars.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="JsonRpc\Web\HttpRequestSecurity.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="JsonRpc\Web\JsonRpcBuildHtml.cs" />
     <Compile Include="JsonRpc\Web\JsonRpcDispatchScope.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -293,6 +298,21 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="script\helptable\helptable.css" />
+    <EmbeddedResource Include="script\jquery.flexselect\flexselect.css" />
+    <EmbeddedResource Include="script\jquery.flexselect\jquery.flexselect.js" />
+    <EmbeddedResource Include="script\jquery.flexselect\jquery.min.js" />
+    <EmbeddedResource Include="script\jquery.flexselect\liquidmetal.js" />
+    <EmbeddedResource Include="script\jquery.menu\hoverIntent.js" />
+    <EmbeddedResource Include="script\jquery.menu\jquery-1.4.2.min.js" />
+    <EmbeddedResource Include="script\jquery.menu\superfish.css" />
+    <EmbeddedResource Include="script\jquery.menu\superfish.js" />
+    <EmbeddedResource Include="script\jquery.menu\supersubs.js" />
+    <EmbeddedResource Include="script\jquery.top\jquery.1.4.2-min.js" />
+    <EmbeddedResource Include="script\jquery.top\scrolltopcontrol.js" />
+    <EmbeddedResource Include="script\jsonformat\jsontemplate.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

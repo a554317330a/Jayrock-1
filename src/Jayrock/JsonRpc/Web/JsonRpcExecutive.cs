@@ -70,8 +70,19 @@ namespace Jayrock.JsonRpc.Web
             JsonRpcDispatcher dispatcher = JsonRpcDispatcherFactory.CreateDispatcher(Service);            
 
             using (new JsonRpcDispatchScope(dispatcher, Context))
-            using (TextReader reader = GetRequestReader())
-                dispatcher.Process(reader, Response.Output);
+            try
+            {
+                using (TextReader reader = GetRequestReader())//得到解密后的数据
+                    dispatcher.Process(reader, Response.Output);
+            }
+            catch (Exception ex)//异常
+            {
+                JsonObject jsonObj = new JsonObject();
+                jsonObj.Put("error", JsonRpcError.FromException(ex, dispatcher.LocalExecution));
+                jsonObj.Put("id", -1);
+                dispatcher.JsonExporter(jsonObj, JsonText.CreateWriter(Response.Output));//输出错误信息
+            }
+
         }
 
         private TextReader GetRequestReader()
@@ -81,11 +92,20 @@ namespace Jayrock.JsonRpc.Web
             if (CaselessString.Equals(contentType, "application/x-www-form-urlencoded"))
             {
                 string request = Request.Form.Count == 1 ? Request.Form[0] : Request.Form["JSON-RPC"];
-                return new StringReader(request);
+
+                //解密处理
+                return _service.DecryptRequest(request);
+
+                //return new StringReader(request);
             }
             else
             {
-                return new StreamReader(Request.InputStream, Request.ContentEncoding);
+                //解密处理
+                var obj = new JsonObject();
+                obj.Import(JsonText.CreateReader(new StreamReader(Request.InputStream, Request.ContentEncoding)));
+                return _service.DecryptRequest(obj.ToString());
+
+                //return new StreamReader(Request.InputStream, Request.ContentEncoding);
             }
         }
 

@@ -403,7 +403,19 @@ namespace Jayrock.JsonRpc
             if (output == null)
                 throw new ArgumentNullException("output");
             
-            JsonExporter(response, output);
+            //加密处理
+            try
+            {
+                JsonExporter(_service.EncryptResponse(response), output);
+            }
+            catch (Exception ex)//异常处理
+            {
+                JsonObject jsonObj = new JsonObject();
+                jsonObj.Put("error", OnError(ex, null));
+                jsonObj.Put("id", -1);
+                JsonExporter(jsonObj, output);//输出错误信息
+            }
+            //JsonExporter(response, output);
         }
 
         protected virtual object OnError(Exception e, IDictionary request)

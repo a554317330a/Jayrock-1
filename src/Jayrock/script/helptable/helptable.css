@@ -1,0 +1,24 @@
+﻿.help {
+    width: 821px;
+}
+.help table{
+	margin: 0 20px;
+	border: 1px solid rgb(222, 231, 230); 
+	border-image: none; 
+	border-collapse: collapse;
+}
+.help table th {
+	border: 1px solid rgb(222, 231, 230); 
+	background-color: #dbf1f2;
+	padding: 1px 1px 1px 1px;
+	font-weight: normal;
+}
+.help table tr {
+	border: 1px solid rgb(222, 231, 230); 
+}
+.help table .line {
+	background-color: rgb(246, 252, 252);
+}
+.help table td {
+	border: 1px solid rgb(222, 231, 230); 
+}

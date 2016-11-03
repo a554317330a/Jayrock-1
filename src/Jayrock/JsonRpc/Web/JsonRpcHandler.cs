@@ -56,6 +56,15 @@ namespace Jayrock.JsonRpc.Web
         
         public virtual void ProcessRequest()
         {
+            if (!RequestSecurity(_context))
+            {
+                _context.Response.Clear();
+                _context.Response.StatusCode = 404;
+                _context.Response.Status = "404 Not Found";
+                _context.Response.End();
+                return;
+            }
+
             object feature = InferFeature();
 
             if (feature == null)
@@ -67,6 +76,11 @@ namespace Jayrock.JsonRpc.Web
                 throw new JsonRpcException(string.Format("The {0} feature does not support HTTP.", feature.GetType().FullName));
 
             handler.ProcessRequest(Context);
+        }
+
+        protected virtual bool RequestSecurity(HttpContext context)
+        {
+            return true;
         }
 
         protected virtual object InferFeature()

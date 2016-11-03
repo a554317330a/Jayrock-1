@@ -20,11 +20,24 @@
 //
 #endregion
 
+using System.Collections;
+using System.IO;
+
 namespace Jayrock.Services
 {
     public interface IService
     {
         ServiceClass GetClass();
+
+        /// <summary>
+        /// 加密输出数据
+        /// </summary>
+        IDictionary EncryptResponse(IDictionary response);
+
+        /// <summary>
+        /// 解密输入数据
+        /// </summary>
+        TextReader DecryptRequest(string request);
     }
 }
 

@@ -44,8 +44,38 @@ namespace Jayrock.Services
         private readonly ServiceClassBuilder _serviceClass;
         private ICustomAttributeProvider _attributes;
         private bool _idempotent;
+        private string _outputDescription;//输出解释
+        private string _inputDescription;//输入解释
+        private string _module;//模块
 
         public static readonly ICustomAttributeProvider ZeroAttributes = new NoCustomAttributeProvider();
+        
+        /// <summary>
+        /// 输出解释
+        /// </summary>
+        public string OutputDescription
+        {
+            get { return Mask.NullString(_outputDescription); }
+            set { _outputDescription = value; }
+        }
+
+        /// <summary>
+        /// 输入解释
+        /// </summary>
+        public string InputDescription
+        {
+            get { return Mask.NullString(_inputDescription); }
+            set { _inputDescription = value; }
+        }
+
+        /// <summary>
+        /// 模块
+        /// </summary>
+        public string Module
+        {
+            get { return Mask.NullString(_module); }
+            set { _module = value; }
+        }
 
         internal MethodBuilder(ServiceClassBuilder serviceClass)
         {

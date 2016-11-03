@@ -36,6 +36,36 @@ namespace Jayrock.Services
         private ArrayList _methodList;
         private IList _roMethodList;
         private string _description;
+        private string _outputDescription;
+        private string _inputDescription;
+        private string _module;//模块
+
+        /// <summary>
+        /// 输出参数
+        /// </summary>
+        public string OutputDescription
+        {
+            get { return Mask.NullString(_outputDescription); }
+            set { _outputDescription = value; }
+        }
+
+        /// <summary>
+        /// 输出参数
+        /// </summary>
+        public string InputDescription
+        {
+            get { return Mask.NullString(_inputDescription); }
+            set { _inputDescription = value; }
+        }
+
+        /// <summary>
+        /// 模块
+        /// </summary>
+        public string Module
+        {
+            get { return Mask.NullString(_module); }
+            set { _module = value; }
+        }
 
         public string Name
         {

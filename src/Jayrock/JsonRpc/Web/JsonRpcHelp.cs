@@ -28,6 +28,11 @@ namespace Jayrock.JsonRpc.Web
     using System.Web.UI;
     using System.Web.UI.HtmlControls;
     using Jayrock.Services;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using Jayrock.Json.RPC.JsonRpc.Web;
 
     using Literal = System.Web.UI.WebControls.Literal;
     using HyperLink = System.Web.UI.WebControls.HyperLink;
@@ -69,11 +74,31 @@ namespace Jayrock.JsonRpc.Web
 
             Method[] methods = SortedMethods;
             ArrayList idemList = new ArrayList(methods.Length);
+            
+            //按模块排序
+            Array.Sort(methods, new ModuleComparer());
 
+            //获取模块及方法中文名
+            Dictionary<string, Dictionary<string,string>> moduleAndMethodDictionary = new Dictionary<string, Dictionary<string,string>>();
+
+            //按模块进行展示
+            string tempModuleName = "";
             foreach (Method method in methods)
             {
+                string module = string.IsNullOrEmpty(method.Module) ? "Othor" : method.Module;
+
+                if (tempModuleName != module)//判断
+                {
+                    tempModuleName = module;//赋值
+                    AddGeneric(dl, "h2", null, module).ID = Server.HtmlEncode(module);//加入模块标题
+
+                    moduleAndMethodDictionary.Add(module, new Dictionary<string,string>());
+                }
+
                 AddMethod(dl, method);
-                
+
+                moduleAndMethodDictionary[module].Add(method.Name,method.Description);
+
                 if (method.Idempotent)
                     idemList.Add(method);
             }
@@ -88,17 +113,100 @@ namespace Jayrock.JsonRpc.Web
                     AddGeneric(idemMethodList, "li", null, method.Name);
             }
 
+            //增加模块及方法中文名到页面
+            foreach (Control tempContent in Body.Controls)
+            {
+                if (tempContent.ID == "Content")
+                {
+                    Control tempContentDl = null;
+                    foreach (Control temp in tempContent.Controls)
+                    {
+                        if (((temp as HtmlGenericControl) != null) && ((HtmlGenericControl)temp).TagName == "dl")
+                        {
+                            tempContentDl = temp;
+                        }
+                    }
+
+                    //增加第一个父下拉框
+                    Control tempDiv = AddGeneric(null, "div", "sf-menu-div");
+                    Control parentUl = AddGeneric(tempDiv, "ul", "sf-menu");
+                    tempContentDl.Controls.AddAt(0, tempDiv);
+                    Control parentLi = AddGeneric(parentUl, "li", "");
+                    AddLink(parentLi, "模块", "#");
+
+                    //商城-订单
+                    //商城-产品
+                    //商城-购物车-公共
+                    Control childUl = AddGeneric(parentLi, "ul", "");
+                    Dictionary<string, Control> parentAndChildKeyControl = new Dictionary<string, Control>();
+
+                    foreach (var moduleAndMethodDictionaryKey in moduleAndMethodDictionary.Keys)
+                    {
+                        string[] moduleAndMethodDictionaryKeySplit = moduleAndMethodDictionaryKey.Split('-');
+
+                        string parentAndChildKey = "";
+                        Control tempChildUl = childUl;
+                        for (int i = 0; i < moduleAndMethodDictionaryKeySplit.Length; i++)
+                        {
+                            parentAndChildKey += ((i == 0 ? "" : "-") + moduleAndMethodDictionaryKeySplit[i]);
+
+                            if (parentAndChildKeyControl.ContainsKey(parentAndChildKey)) //存在
+                            {
+                                tempChildUl = parentAndChildKeyControl[parentAndChildKey];
+                            }
+                            else//不存在
+                            {
+                                Control childLi = AddGeneric(tempChildUl, "li", "");
+                                AddLink(childLi, "[M]" + moduleAndMethodDictionaryKeySplit[i], "#" + parentAndChildKey);
+                                tempChildUl = AddGeneric(childLi, "ul", "");
+                                parentAndChildKeyControl.Add(parentAndChildKey, tempChildUl);
+                            }
+                        }
+
+                        if (moduleAndMethodDictionary.ContainsKey(parentAndChildKey) && parentAndChildKeyControl.ContainsKey(parentAndChildKey))
+                        {
+                            foreach (var moduleAndMethod in moduleAndMethodDictionary[parentAndChildKey])
+                            {
+                                Control childLi = AddGeneric(parentAndChildKeyControl[parentAndChildKey], "li", "");
+                                AddLink(childLi, "[I]" + moduleAndMethod.Value, "#" + moduleAndMethod.Key);
+                            }
+                        }
+                    }
+                }
+            }
+
+            //加入下拉搜索资源
+            AddStyleBlockFromResource("Jayrock.script.jquery.menu.superfish.css");
+            AddScriptBlockFromResource("Jayrock.script.jquery.menu.jquery-1.4.2.min.js");
+            AddScriptBlockFromResource("Jayrock.script.jquery.menu.hoverIntent.js");
+            AddScriptBlockFromResource("Jayrock.script.jquery.menu.superfish.js");
+            AddScriptBlock(@"
+            $(document).ready(function(){
+	            $('ul.sf-menu').superfish();
+            });
+            ");
+
+            //加载回到首页
+            AddScriptBlockFromResource("Jayrock.script.jquery.top.scrolltopcontrol.js");
+
+            //加入请求和返回值参数帮助列表资源
+            AddStyleBlockFromResource("Jayrock.script.helptable.helptable.css");
             base.AddContent ();
         }
 
         private static void AddMethod(Control parent, Method method)
         {
             Control methodTerm = AddGeneric(parent, "dt", "method");
-            AddSpan(methodTerm, "method-name", method.Name);
+            methodTerm.ID = method.Name;
+            AddSpan(methodTerm, "method-name",null, string.Format("<a href=\"?test#{0}\">{0}</a>",method.Name));
             AddSignature(methodTerm, method);
 
             if (method.Description.Length > 0)
-                AddGeneric(parent, "dd", "method-summary", method.Description);
+                AddGeneric(parent, "dd", "method-summary", null, "<div style=\"font-weight: bold;\">Description:</div><div style=\"margin-left: 20px;\">" + method.Description + "</div>");
+            if (method.InputDescription.Length > 0)
+                AddGeneric(parent, "dd", "method-summary", null, "<div style=\"font-weight: bold;\">Input:</div><div style=\"margin-left: 20px;\">" + JsonRpcBuildHtml.BuildHelpInput(method.InputDescription) + "</div>");
+            if (method.OutputDescription.Length > 0)
+                AddGeneric(parent, "dd", "method-summary", null, "<div style=\"font-weight: bold;\">Output:</div><div style=\"margin-left: 20px;\">" + JsonRpcBuildHtml.BuildHelpOutput(method.OutputDescription) + "</div>");
         }
 
         private static void AddSignature(Control parent, Method method)
@@ -123,7 +231,7 @@ namespace Jayrock.JsonRpc.Web
             return AddGeneric(parent, tagName, className, null);
         }
 
-        private static Control AddGeneric(Control parent, string tagName, string className, string innerText)
+        private static Control AddGeneric(Control parent, string tagName, string className, string innerText,string innerHtml=null)
         {
             HtmlGenericControl control = new HtmlGenericControl(tagName);
             
@@ -132,8 +240,12 @@ namespace Jayrock.JsonRpc.Web
             
             if (Mask.NullString(innerText).Length > 0) 
                 control.InnerText = innerText;
-            
-            parent.Controls.Add(control);
+
+            if (Mask.NullString(innerHtml).Length > 0)
+                control.InnerHtml = innerHtml;
+
+            if (parent != null)
+                parent.Controls.Add(control);
             return control;
         }
 
@@ -142,9 +254,9 @@ namespace Jayrock.JsonRpc.Web
             return AddGeneric(parent, "p", className, innerText);
         }
 
-        private static Control AddSpan(Control parent, string className, string innerText)
+        private static Control AddSpan(Control parent, string className, string innerText,string innerHtml=null)
         {
-            return AddGeneric(parent, "span", className, innerText);
+            return AddGeneric(parent, "span", className, innerText,innerHtml);
         }
     
         private static Control AddDiv(Control parent, string className)
@@ -221,6 +333,30 @@ namespace Jayrock.JsonRpc.Web
                 }");
 
             style.Attributes["type"] = "text/css";
+        }
+
+        private void AddStyleBlockFromResource(string resourceName)
+        {
+            using (Stream stream = GetType().Assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                AddStyleBlock(reader.ReadToEnd());
+        }
+
+        private void AddScriptBlockFromResource(string resourceName)
+        {
+            using (Stream stream = GetType().Assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                AddScriptBlock(reader.ReadToEnd());
+        }
+
+        private void AddScriptBlock(string script)
+        {
+            Head.Controls.Add(new LiteralControl("<script type='text/javascript'>" + script + "</script>"));
+        }
+
+        private void AddStyleBlock(string style)
+        {
+            Head.Controls.Add(new LiteralControl("<style>" + style + "</style>"));
         }
     }
 }

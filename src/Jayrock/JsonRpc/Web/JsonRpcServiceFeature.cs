@@ -36,7 +36,7 @@ namespace Jayrock.JsonRpc.Web
     public abstract class JsonRpcServiceFeature : IHttpHandler
     {
         private HttpContext _context;
-        private readonly IService _service;
+        protected readonly IService _service;
 
         protected JsonRpcServiceFeature(IService service)
         {

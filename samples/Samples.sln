@@ -39,6 +39,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AspNetDemo", "AspNetDemo\",
 		VWDPort = "33764"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{44F7DDDE-33C8-4B16-8748-6ED51BBED46C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{32FF78A9-0829-426E-80B4-861A0EA783E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32FF78A9-0829-426E-80B4-861A0EA783E8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{32FF78A9-0829-426E-80B4-861A0EA783E8}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{44F7DDDE-33C8-4B16-8748-6ED51BBED46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F7DDDE-33C8-4B16-8748-6ED51BBED46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F7DDDE-33C8-4B16-8748-6ED51BBED46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F7DDDE-33C8-4B16-8748-6ED51BBED46C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
