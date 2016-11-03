@@ -603,14 +603,14 @@ changes. For additional help with breaking compilations, post your issue to the
   [msdn5]: http://msdn2.microsoft.com/en-us/library/bb299886.aspx#intro_to_json_topic5
   [jrpptpdf]: https://atifaziz.github.io/projects/jayrock/Jayrock.pdf
 
-## Update(20161103)
-1、增加模块名称、输入参数、输出参数注释
-![1](www/images/1增加模块名称、输入参数、输出参数注释.png)
-2、增加Sign验证、输入数据解密、输出数据解密重写方法
-![2](www/images/2增加Sign验证、输入数据解密、输出数据解密重写方法.png)
-3、增加集成Demo规范
-![3](www/images/3增加集成Demo规范.png)
-4、增加模块分类、接口快速定位、接口调用说明、接口输入输出参数列表、一键向上按钮、接口方法快速进入测试页面
-![4](www/images/4增加模块分类、接口快速定位、接口调用说明、接口输入输出参数列表、一键向上按钮、接口方法快速进入测试页面.png)
-5、增加下拉模糊搜索、默认参数自动填写、接口注释、输入输出参数列表、返回数据JSON格式化
-![5](www/images/5增加下拉模糊搜索、默认参数自动填写、接口注释、输入输出参数列表、返回数据JSON格式化.png)
+## Update(20161103)  
+1、增加模块名称、输入参数、输出参数注释  
+![1](www/images/1增加模块名称、输入参数、输出参数注释.png)  
+2、增加Sign验证、输入数据解密、输出数据解密重写方法  
+![2](www/images/2增加Sign验证、输入数据解密、输出数据解密重写方法.png)  
+3、增加集成Demo规范  
+![3](www/images/3增加集成Demo规范.png)  
+4、增加模块分类、接口快速定位、接口调用说明、接口输入输出参数列表、一键向上按钮、接口方法快速进入测试页面  
+![4](www/images/4增加模块分类、接口快速定位、接口调用说明、接口输入输出参数列表、一键向上按钮、接口方法快速进入测试页面.png)  
+5、增加下拉模糊搜索、默认参数自动填写、接口注释、输入输出参数列表、返回数据JSON格式化  
+![5](www/images/5增加下拉模糊搜索、默认参数自动填写、接口注释、输入输出参数列表、返回数据JSON格式化.png)  
