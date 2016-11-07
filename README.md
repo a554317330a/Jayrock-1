@@ -605,12 +605,12 @@ changes. For additional help with breaking compilations, post your issue to the
 
 ## Update(20161103)  
 1.add the module name, input parameters, output parameters notes  
-![1](www/images/1 add the module name, input parameters, output parameters notes.png)  
+![1](www/images/1.png)  
 2.to increase the Sign validation, input data decryption, output data decryption rewriting method  
-![2](www/images/2 to increase the Sign validation, input data decryption, output data decryption rewriting method.png)  
+![2](www/images/2.png)  
 3.to increase the integration of Demo specification  
-![3](www/images/3 to increase the integration of Demo specification.png)  
+![3](www/images/3.png)  
 4.to increase the module classification, rapid interface positioning, interface call instructions, the interface of the input and output parameters list, a button to push button, the interface method to quickly enter the test page  
-![4](www/images/4 to increase the module classification, rapid interface positioning, interface call instructions, the interface of the input and output parameters list, a button to push button, the interface method to quickly enter the test page.png)  
+![4](www/images/4.png)  
 5.add drop - down fuzzy search, default parameters automatically fill in, interface notes, input and output parameter list, return data JSON format  
-![5](www/images/5 add drop - down fuzzy search, default parameters automatically fill in, interface notes, input and output parameter list, return data JSON format.png)  
+![5](www/images/5.png)  
