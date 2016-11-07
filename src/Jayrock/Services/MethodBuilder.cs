@@ -44,14 +44,14 @@ namespace Jayrock.Services
         private readonly ServiceClassBuilder _serviceClass;
         private ICustomAttributeProvider _attributes;
         private bool _idempotent;
-        private string _outputDescription;//输出解释
-        private string _inputDescription;//输入解释
-        private string _module;//模块
+        private string _outputDescription;//Output interpretation
+        private string _inputDescription;//Input interpretation
+        private string _module;//Module
 
         public static readonly ICustomAttributeProvider ZeroAttributes = new NoCustomAttributeProvider();
         
         /// <summary>
-        /// 输出解释
+        /// Output interpretation
         /// </summary>
         public string OutputDescription
         {
@@ -60,7 +60,7 @@ namespace Jayrock.Services
         }
 
         /// <summary>
-        /// 输入解释
+        /// Input interpretation
         /// </summary>
         public string InputDescription
         {
@@ -69,7 +69,7 @@ namespace Jayrock.Services
         }
 
         /// <summary>
-        /// 模块
+        /// Module
         /// </summary>
         public string Module
         {

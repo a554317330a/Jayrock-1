@@ -156,7 +156,7 @@ namespace Jayrock.JsonRpc.Web
             }
         }
 
-        protected sealed class ModuleComparer : IComparer//Ä£¿éÅÅÐò
+        protected sealed class ModuleComparer : IComparer//Module sort
         {
             public int Compare(object x, object y)
             {

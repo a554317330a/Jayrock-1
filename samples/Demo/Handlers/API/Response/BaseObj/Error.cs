@@ -6,17 +6,17 @@ using System.Text;
 namespace Demo.Handlers.API.Response
 {
     /// <summary>
-    /// 响应错误信息
+    /// Response error message
     /// </summary>
     public class Error
     {
         /// <summary>
-        /// 业务提示信息
+        /// Business tips information
         /// </summary>
         public String SubMsg { get; set; }
 
         /// <summary>
-        /// 业务响应码
+        /// Service response code
         /// </summary>
         public SubCode? SubCode { get; set; }
     }

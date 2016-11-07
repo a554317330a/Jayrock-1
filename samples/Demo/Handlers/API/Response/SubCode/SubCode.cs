@@ -6,28 +6,28 @@ using System.Text;
 namespace Demo.Handlers.API.Response
 {
     /// <summary>
-    /// 业务响应码
+    /// Service response code
     /// </summary>
     public enum SubCode
     {
         /// <summary>
-        /// Session失效+信息提示
+        /// Session failure + information prompt
         /// </summary>
         SessionfulPrompt = -1,
         /// <summary>
-        /// 业务执行正常
+        /// Business execution is normal
         /// </summary>
         Successful = 0,
         /// <summary>
-        /// 业务执行正常+信息提示
+        /// Business executive normal + message
         /// </summary>
         SuccessfulPrompt = 1,
         /// <summary>
-        /// 业务执行失败
+        /// Business execution failure
         /// </summary>
         Failing = 2,
         /// <summary>
-        /// 业务执行失败+信息提示
+        /// Business execution failure + info prompt
         /// </summary>
         FailingPrompt = 3
     }

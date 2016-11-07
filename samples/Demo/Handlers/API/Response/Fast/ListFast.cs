@@ -8,56 +8,56 @@ using Jayrock.Json;
 namespace Demo.Handlers.API.Response
 {
     /// <summary>
-    /// 列表快速响应容器
+    /// Quick response container
     /// </summary>
     public class ListFast : IFastResult
     {
         /// <summary>
-        /// 数据
+        /// Data
         /// </summary>
         public object List { get; set; }
 
         /// <summary>
-        /// 业务响应代码
+        /// Business response code
         /// </summary>
         public SubCode SubCode { get; set; }
 
         /// <summary>
-        /// 是否有下一页
+        /// Whether or not there is a next page
         /// </summary>
         public bool IsNext { get; set; }
 
         /// <summary>
-        /// 分页请求当前页
+        /// Page request current page
         /// </summary>
         public int PageIndex { get; set; }
 
         /// <summary>
-        /// 分页请求页大小
+        /// Paging request page size
         /// </summary>
         public int PageSize { get; set; }
 
         /// <summary>
-        /// 总记录数
+        /// Total record number
         /// </summary>
         public int TotalSize { get; set; }
         
         /// <summary>
-        /// 总页数
+        /// PageCount
         /// </summary>
         public int TotalIndex { get; set; }
 
         /// <summary>
-        /// 对象名
+        /// Object name
         /// </summary>
         public String ObjectName { get; set; }
 
         /// <summary>
-        /// 业务提示信息
+        /// Business tips information
         /// </summary>
         public String SubMsg { get; set; }
 
-        #region IFastResult 成员
+        #region IFastResult member
 
         public ActionResult GetActionResult()
         {
@@ -74,34 +74,34 @@ namespace Demo.Handlers.API.Response
             lar.Property.PageSize = PageSize;
             lar.Property.ObjectName = ObjectName;
 
-            //判断SubCode是否设置正确
+            //To determine whether the SubCode is set correctly
             if (lar.Error.SubCode != null)
             {
-                if (lar.Error.SubCode == Response.SubCode.SessionfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为-1时，需要设置ErrMsg值！");
-                if (lar.Error.SubCode == Response.SubCode.Successful && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为0时，不允许设置ErrMsg值！");
-                if (lar.Error.SubCode == Response.SubCode.SuccessfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为1时，需要设置ErrMsg值！");
-                if (lar.Error.SubCode == Response.SubCode.Failing && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为2时，不允许设置ErrMsg值！");
-                if (lar.Error.SubCode == Response.SubCode.FailingPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode不为3时，需要设置ErrMsg值！");
+                if (lar.Error.SubCode == Response.SubCode.SessionfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode for the -1, you need to set the value of ErrMsg!");
+                if (lar.Error.SubCode == Response.SubCode.Successful && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("When SubCode is 0, the ErrMsg value is not allowed!");
+                if (lar.Error.SubCode == Response.SubCode.SuccessfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("When SubCode is 1, you need to set the ErrMsg value!");
+                if (lar.Error.SubCode == Response.SubCode.Failing && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("When SubCode is 2, the ErrMsg value is not allowed!");
+                if (lar.Error.SubCode == Response.SubCode.FailingPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode is not 3, you need to set the value of ErrMsg!");
             }
 
-            //包装异常
-            if (HttpContext.Current.IsDebuggingEnabled)//判断是否为测试环境
+            //Packing anomaly
+            if (HttpContext.Current.IsDebuggingEnabled)//To determine whether the test environment
             {
-                if (this.List is Exception)//如果为异常
+                if (this.List is Exception)//If it is abnormal
                 {
                     this.List = new JsonArray();
                 }
             }
-            else//正式环境使用包装异常
+            else//Formal environmental use of packaging anomalies
             {
-                if (this.List is Exception)//如果为异常
+                if (this.List is Exception)//If it is abnormal
                 {
                     this.List = new JsonArray();
-                    lar.Error.SubMsg = "网络不给力!";
+                    lar.Error.SubMsg = "Network anomaly!";
                 }
             }
 
-            //装载JSON对象
+            //Load JSON object
             lar.Put("List", this.List);
 
             JsonObject errorObject = new JsonObject();

@@ -72,15 +72,15 @@ namespace Jayrock.JsonRpc.Web
             using (new JsonRpcDispatchScope(dispatcher, Context))
             try
             {
-                using (TextReader reader = GetRequestReader())//得到解密后的数据
+                using (TextReader reader = GetRequestReader())//Get the data after decryption
                     dispatcher.Process(reader, Response.Output);
             }
-            catch (Exception ex)//异常
+            catch (Exception ex)//abnormal
             {
                 JsonObject jsonObj = new JsonObject();
                 jsonObj.Put("error", JsonRpcError.FromException(ex, dispatcher.LocalExecution));
                 jsonObj.Put("id", -1);
-                dispatcher.JsonExporter(jsonObj, JsonText.CreateWriter(Response.Output));//输出错误信息
+                dispatcher.JsonExporter(jsonObj, JsonText.CreateWriter(Response.Output));//Output error message
             }
 
         }
@@ -93,14 +93,14 @@ namespace Jayrock.JsonRpc.Web
             {
                 string request = Request.Form.Count == 1 ? Request.Form[0] : Request.Form["JSON-RPC"];
 
-                //解密处理
+                //decrypt
                 return _service.DecryptRequest(request);
 
                 //return new StringReader(request);
             }
             else
             {
-                //解密处理
+                //decrypt
                 var obj = new JsonObject();
                 obj.Import(JsonText.CreateReader(new StreamReader(Request.InputStream, Request.ContentEncoding)));
                 return _service.DecryptRequest(obj.ToString());

@@ -604,13 +604,13 @@ changes. For additional help with breaking compilations, post your issue to the
   [jrpptpdf]: https://atifaziz.github.io/projects/jayrock/Jayrock.pdf
 
 ## Update(20161103)  
-1、增加模块名称、输入参数、输出参数注释  
-![1](www/images/1增加模块名称、输入参数、输出参数注释.png)  
-2、增加Sign验证、输入数据解密、输出数据解密重写方法  
-![2](www/images/2增加Sign验证、输入数据解密、输出数据解密重写方法.png)  
-3、增加集成Demo规范  
-![3](www/images/3增加集成Demo规范.png)  
-4、增加模块分类、接口快速定位、接口调用说明、接口输入输出参数列表、一键向上按钮、接口方法快速进入测试页面  
-![4](www/images/4增加模块分类、接口快速定位、接口调用说明、接口输入输出参数列表、一键向上按钮、接口方法快速进入测试页面.png)  
-5、增加下拉模糊搜索、默认参数自动填写、接口注释、输入输出参数列表、返回数据JSON格式化  
-![5](www/images/5增加下拉模糊搜索、默认参数自动填写、接口注释、输入输出参数列表、返回数据JSON格式化.png)  
+1.add the module name, input parameters, output parameters notes  
+![1](www/images/1 add the module name, input parameters, output parameters notes.png)  
+2.to increase the Sign validation, input data decryption, output data decryption rewriting method  
+![2](www/images/2 to increase the Sign validation, input data decryption, output data decryption rewriting method.png)  
+3.to increase the integration of Demo specification  
+![3](www/images/3 to increase the integration of Demo specification.png)  
+4.to increase the module classification, rapid interface positioning, interface call instructions, the interface of the input and output parameters list, a button to push button, the interface method to quickly enter the test page  
+![4](www/images/4 to increase the module classification, rapid interface positioning, interface call instructions, the interface of the input and output parameters list, a button to push button, the interface method to quickly enter the test page.png)  
+5.add drop - down fuzzy search, default parameters automatically fill in, interface notes, input and output parameter list, return data JSON format  
+![5](www/images/5 add drop - down fuzzy search, default parameters automatically fill in, interface notes, input and output parameter list, return data JSON format.png)  

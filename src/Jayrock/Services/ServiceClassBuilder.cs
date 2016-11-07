@@ -38,10 +38,10 @@ namespace Jayrock.Services
         private string _description;
         private string _outputDescription;
         private string _inputDescription;
-        private string _module;//模块
+        private string _module;//Module
 
         /// <summary>
-        /// 输出参数
+        /// Output parameter
         /// </summary>
         public string OutputDescription
         {
@@ -50,7 +50,7 @@ namespace Jayrock.Services
         }
 
         /// <summary>
-        /// 输出参数
+        /// Output parameter
         /// </summary>
         public string InputDescription
         {
@@ -59,7 +59,7 @@ namespace Jayrock.Services
         }
 
         /// <summary>
-        /// 模块
+        /// Module
         /// </summary>
         public string Module
         {

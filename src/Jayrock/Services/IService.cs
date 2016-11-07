@@ -30,12 +30,12 @@ namespace Jayrock.Services
         ServiceClass GetClass();
 
         /// <summary>
-        /// 加密输出数据
+        /// Encrypted output data
         /// </summary>
         IDictionary EncryptResponse(IDictionary response);
 
         /// <summary>
-        /// 解密输入数据
+        /// Decryption input data
         /// </summary>
         TextReader DecryptRequest(string request);
     }

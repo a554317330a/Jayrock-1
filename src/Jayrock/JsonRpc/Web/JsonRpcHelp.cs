@@ -74,23 +74,23 @@ namespace Jayrock.JsonRpc.Web
 
             Method[] methods = SortedMethods;
             ArrayList idemList = new ArrayList(methods.Length);
-            
-            //按模块排序
+
+            //Sort by module
             Array.Sort(methods, new ModuleComparer());
 
-            //获取模块及方法中文名
+            //Acquisition module and method Chinese name
             Dictionary<string, Dictionary<string,string>> moduleAndMethodDictionary = new Dictionary<string, Dictionary<string,string>>();
 
-            //按模块进行展示
+            //Display according to module
             string tempModuleName = "";
             foreach (Method method in methods)
             {
                 string module = string.IsNullOrEmpty(method.Module) ? "Othor" : method.Module;
 
-                if (tempModuleName != module)//判断
+                if (tempModuleName != module)//judge
                 {
-                    tempModuleName = module;//赋值
-                    AddGeneric(dl, "h2", null, module).ID = Server.HtmlEncode(module);//加入模块标题
+                    tempModuleName = module;//assignment
+                    AddGeneric(dl, "h2", null, module).ID = Server.HtmlEncode(module);//Add module header
 
                     moduleAndMethodDictionary.Add(module, new Dictionary<string,string>());
                 }
@@ -113,7 +113,7 @@ namespace Jayrock.JsonRpc.Web
                     AddGeneric(idemMethodList, "li", null, method.Name);
             }
 
-            //增加模块及方法中文名到页面
+            //Add modules and methods to the Chinese name to the page
             foreach (Control tempContent in Body.Controls)
             {
                 if (tempContent.ID == "Content")
@@ -127,16 +127,16 @@ namespace Jayrock.JsonRpc.Web
                         }
                     }
 
-                    //增加第一个父下拉框
+                    //Add the first parent drop box
                     Control tempDiv = AddGeneric(null, "div", "sf-menu-div");
                     Control parentUl = AddGeneric(tempDiv, "ul", "sf-menu");
                     tempContentDl.Controls.AddAt(0, tempDiv);
                     Control parentLi = AddGeneric(parentUl, "li", "");
-                    AddLink(parentLi, "模块", "#");
+                    AddLink(parentLi, "Module", "#");
 
-                    //商城-订单
-                    //商城-产品
-                    //商城-购物车-公共
+                    // Mall - order
+                    // Mall - products
+                    // Mall - shopping cart - public
                     Control childUl = AddGeneric(parentLi, "ul", "");
                     Dictionary<string, Control> parentAndChildKeyControl = new Dictionary<string, Control>();
 
@@ -150,11 +150,11 @@ namespace Jayrock.JsonRpc.Web
                         {
                             parentAndChildKey += ((i == 0 ? "" : "-") + moduleAndMethodDictionaryKeySplit[i]);
 
-                            if (parentAndChildKeyControl.ContainsKey(parentAndChildKey)) //存在
+                            if (parentAndChildKeyControl.ContainsKey(parentAndChildKey)) //existence
                             {
                                 tempChildUl = parentAndChildKeyControl[parentAndChildKey];
                             }
-                            else//不存在
+                            else//Non-existent
                             {
                                 Control childLi = AddGeneric(tempChildUl, "li", "");
                                 AddLink(childLi, "[M]" + moduleAndMethodDictionaryKeySplit[i], "#" + parentAndChildKey);
@@ -175,7 +175,7 @@ namespace Jayrock.JsonRpc.Web
                 }
             }
 
-            //加入下拉搜索资源
+            //Add drop - down search resources
             AddStyleBlockFromResource("Jayrock.script.jquery.menu.superfish.css");
             AddScriptBlockFromResource("Jayrock.script.jquery.menu.jquery-1.4.2.min.js");
             AddScriptBlockFromResource("Jayrock.script.jquery.menu.hoverIntent.js");
@@ -186,10 +186,10 @@ namespace Jayrock.JsonRpc.Web
             });
             ");
 
-            //加载回到首页
+            //Load back to the home page
             AddScriptBlockFromResource("Jayrock.script.jquery.top.scrolltopcontrol.js");
 
-            //加入请求和返回值参数帮助列表资源
+            //Add a request and return a value parameter to help list resources
             AddStyleBlockFromResource("Jayrock.script.helptable.helptable.css");
             base.AddContent ();
         }

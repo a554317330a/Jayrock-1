@@ -46,9 +46,9 @@ namespace Jayrock.Services
         private readonly string _description;
         private readonly bool _idempotent;
         private readonly ICustomAttributeProvider _attributes;
-        private readonly string _outputDescription;//输出解释
-        private readonly string _inputDescription;//输入解释
-        private readonly string _module;//模块
+        private readonly string _outputDescription;//Output interpretation
+        private readonly string _inputDescription;//Input interpretation
+        private readonly string _module;//Module
 
         internal Method(MethodBuilder methodBuilder, ServiceClass clazz)
         {
@@ -63,9 +63,9 @@ namespace Jayrock.Services
             _idempotent = methodBuilder.Idempotent;
             _attributes = methodBuilder.CustomAttributes;
             _class = clazz;
-            _outputDescription = methodBuilder.OutputDescription;//输出解释
-            _inputDescription = methodBuilder.InputDescription;//输入解释
-            _module = methodBuilder.Module;//模块
+            _outputDescription = methodBuilder.OutputDescription;//Output interpretation
+            _inputDescription = methodBuilder.InputDescription;//Input interpretation
+            _module = methodBuilder.Module;//Module
             
             //
             // Set up parameters and their names.
@@ -93,7 +93,7 @@ namespace Jayrock.Services
         }
 
         /// <summary>
-        /// 输出解释
+        /// Output interpretation
         /// </summary>
         public string OutputDescription
         {
@@ -101,7 +101,7 @@ namespace Jayrock.Services
         }
 
         /// <summary>
-        /// 输入解释
+        /// Input interpretation
         /// </summary>
         public string InputDescription
         {
@@ -109,7 +109,7 @@ namespace Jayrock.Services
         }
 
         /// <summary>
-        /// 模块
+        /// Module
         /// </summary>
         public string Module
         {

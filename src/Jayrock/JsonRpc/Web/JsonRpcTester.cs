@@ -99,22 +99,22 @@ namespace Jayrock.JsonRpc.Web
             helpLink.NavigateUrl = Request.FilePath + "?help";
             selectionPara.Controls.Add(helpLink);
 
-            //模块
+            //module
             HtmlGenericControl module = new HtmlGenericControl("p");
             module.ID = "module";
             selectionPara.Controls.Add(module);
 
-            //方法
+            //interface
             HtmlGenericControl Interface = new HtmlGenericControl("p");
             Interface.ID = "interface";
             selectionPara.Controls.Add(Interface);
 
-            //注释
+            //description
             HtmlGenericControl description = new HtmlGenericControl("p");
             description.ID = "description";
             selectionPara.Controls.Add(description);
 
-            //输入
+            //input
             HtmlGenericControl input = new HtmlGenericControl("p");
             input.ID = "input";
             selectionPara.Controls.Add(input);
@@ -127,7 +127,7 @@ namespace Jayrock.JsonRpc.Web
             requestArea.Attributes.Add("title", "Enter the array of parameters (in JSON) to send in the RPC request.");
             requestPara.Controls.Add(requestArea);
 
-            //输出
+            //output
             HtmlGenericControl output = new HtmlGenericControl("p");
             output.ID = "output";
             requestPara.Controls.Add(output);
@@ -148,7 +148,7 @@ namespace Jayrock.JsonRpc.Web
             headersPre.ID = "Headers";
 
             AddScriptBlockFromResource("Jayrock.json.js");
-            //加入下拉搜索资源
+            //Add drop - down search resources
             AddStyleBlockFromResource("Jayrock.script.jquery.flexselect.flexselect.css");
             AddScriptBlockFromResource("Jayrock.script.jquery.flexselect.jquery.min.js");
             AddScriptBlockFromResource("Jayrock.script.jquery.flexselect.liquidmetal.js");
@@ -272,26 +272,26 @@ namespace Jayrock.JsonRpc.Web
                     }
                 }); 
 
-                //下拉搜索
+                //Pull down search
                 $(document).ready(function() {
                     $('#Method').flexselect();
                 });
 
                 ");
 
-            //加载回到首页
+            //Load back to the home page
             AddScriptBlockFromResource("Jayrock.script.jquery.top.scrolltopcontrol.js");
 
-            //加入请求和返回值参数帮助列表资源
+            //Add a request and return a value parameter to help list resources
             AddStyleBlockFromResource("Jayrock.script.helptable.helptable.css");
 
             base.AddContent();
 
-            //添加json格式化工具
+            //Add JSON formatting tool
             using (Stream stream = GetType().Assembly.GetManifestResourceStream("Jayrock.script.jsonformat.jsontemplate.htm"))
             using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
                 form.Controls.Add(new LiteralControl(reader.ReadToEnd()));
-            //添加json格式化工具
+            //Add JSON formatting tool
         }
 
         private void AddScriptBlockFromResource(string resourceName) {

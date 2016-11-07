@@ -8,32 +8,32 @@ namespace Demo.Handlers.API.Response
     public class ListProperty : Property
     {
         /// <summary>
-        /// 是否列表
+        /// Whether list
         /// </summary>
         public override bool IsList { get { return true; } set{} }
 
         /// <summary>
-        /// 分页请求当前页
+        /// Page request current page
         /// </summary>
         public int PageIndex { get; set; }
 
         /// <summary>
-        /// 分页请求页大小
+        /// Paging request page size
         /// </summary>
         public int PageSize { get; set; }
 
         /// <summary>
-        /// 是否有下一页
+        /// Whether or not there is a next page
         /// </summary>
         public bool IsNext { get; set; }
 
         /// <summary>
-        /// 记录数
+        /// Record number
         /// </summary>
         public int TotalSize { get; set; }
 
         /// <summary>
-        /// 总页数
+        /// PageCount
         /// </summary>
         public int TotalIndex { get; set; }
     }

@@ -10,39 +10,39 @@ namespace Demo.API.API.V3
     {
         public BaseHandler() : base(true)
         {
-            API_VERSION = "V1";//设置版本
+            API_VERSION = "V1";//Set version
         }
 
         /// <summary>
-        /// API加密验证
+        /// API encryption authentication
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
         protected override bool RequestSecurity(System.Web.HttpContext context)
         {
-            //Sign验证
+            //Sign Verification
             return true;
         }
 
         /// <summary>
-        /// 输出数据加密
+        /// Output data encryption
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>
         public override System.Collections.IDictionary EncryptResponse(System.Collections.IDictionary response)
         {
-            //加密
+            //Encryption
             return base.EncryptResponse(response);
         }
 
         /// <summary>
-        /// 输入数据解密
+        /// Input data decryption
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         public override TextReader DecryptRequest(string request)
         {
-            //解密
+            //Decrypt
             return base.DecryptRequest(request);
         }
     }

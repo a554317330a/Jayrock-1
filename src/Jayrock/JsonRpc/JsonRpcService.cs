@@ -148,7 +148,7 @@ namespace Jayrock.JsonRpc
         }
 
         /// <summary>
-        /// 加密输出数据
+        /// Encrypted output data
         /// </summary>
         public virtual IDictionary EncryptResponse(IDictionary response)
         {
@@ -156,7 +156,7 @@ namespace Jayrock.JsonRpc
         }
 
         /// <summary>
-        /// 解密输入数据
+        /// Decryption input data
         /// </summary>
         public virtual TextReader DecryptRequest(string request)
         {

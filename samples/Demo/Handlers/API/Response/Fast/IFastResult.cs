@@ -6,12 +6,12 @@ using System.Text;
 namespace Demo.Handlers.API.Response
 {
     /// <summary>
-    /// 快速结果接口
+    /// Quick result interface
     /// </summary>
     public interface IFastResult
     {
         /// <summary>
-        /// 获取响应结果
+        /// Obtain response results
         /// </summary>
         /// <returns></returns>
         ActionResult GetActionResult();
