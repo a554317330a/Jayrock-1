@@ -7,12 +7,12 @@ using System.Text.RegularExpressions;
 namespace Jayrock.Json.RPC.JsonRpc.Web
 {
     /// <summary>
-    /// Generate HTML
+    /// 生成HTML
     /// </summary>
     public class JsonRpcBuildHtml
     {
         /// <summary>
-        /// Generate request parameter HTML
+        /// 生成请求参数html
         /// </summary>
         public static string BuildHelpInput(string inputDescription)
         {
@@ -30,22 +30,22 @@ namespace Jayrock.Json.RPC.JsonRpc.Web
                     htmlString.Append("	<tbody>");
                     htmlString.Append("		<tr>");
                     htmlString.Append("			<th width=\"91\">");
-                    htmlString.Append("				Request");
+                    htmlString.Append("				请求参数");
                     htmlString.Append("			</th>");
                     htmlString.Append("			<th width=\"33\">");
-                    htmlString.Append("				Required");
+                    htmlString.Append("				必选");
                     htmlString.Append("			</th>");
                     htmlString.Append("			<th width=\"100\">");
-                    htmlString.Append("				Type");
+                    htmlString.Append("				类型");
                     htmlString.Append("			</th>");
                     htmlString.Append("			<th width=\"465\">");
-                    htmlString.Append("				Explain");
+                    htmlString.Append("				说明");
                     htmlString.Append("			</th>");
                     htmlString.Append("			<th width=\"66\">");
-                    htmlString.Append("				Default");
+                    htmlString.Append("				默认值");
                     htmlString.Append("			</th>");
                     htmlString.Append("			<th width=\"66\">");
-                    htmlString.Append("				Test");
+                    htmlString.Append("				测试值");
                     htmlString.Append("			</th>");
                     htmlString.Append("		</tr>");
 
@@ -121,7 +121,7 @@ namespace Jayrock.Json.RPC.JsonRpc.Web
         }
 
         /// <summary>
-        /// Gets the test value of the test page
+        /// 获取测试页面的测试值
         /// </summary>
         public static string GetTestValue(string inputDescription,string parameterName)
         {
@@ -200,7 +200,7 @@ namespace Jayrock.Json.RPC.JsonRpc.Web
         }
 
         /// <summary>
-        /// Generates a return value field HTML
+        /// 生成返回值字段html
         /// </summary>
         public static string BuildHelpOutput(string outputDescription)
         {
@@ -218,13 +218,13 @@ namespace Jayrock.Json.RPC.JsonRpc.Web
                     htmlString.Append("	<tbody>");
                     htmlString.Append("		<tr>");
                     htmlString.Append("			<th width=\"91\">");
-                    htmlString.Append("				Return");
+                    htmlString.Append("				返回值字段");
                     htmlString.Append("			</th>");
                     htmlString.Append("			<th width=\"100\">");
-                    htmlString.Append("				Type");
+                    htmlString.Append("				类型");
                     htmlString.Append("			</th>");
                     htmlString.Append("			<th width=\"630\">");
-                    htmlString.Append("				Explain");
+                    htmlString.Append("				说明");
                     htmlString.Append("			</th>"); 
                     htmlString.Append("		</tr>");
                     

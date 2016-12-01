@@ -15,13 +15,13 @@ namespace Demo.Handlers.API
 {
     public class HandlerBase : JsonRpcHandler, IRequiresSessionState
     {
-        #region Const Member
+        #region 常量成员
 
-        protected string API_VERSION = "";//API Version
+        protected string API_VERSION = "";//api的版本
         
         #endregion
 
-        #region Structure
+        #region 构造
 
         private bool requestSecurity = false;
         public HandlerBase(bool _requestSecurity)
@@ -31,7 +31,7 @@ namespace Demo.Handlers.API
 
         #endregion
 
-        #region Sign Verification
+        #region Sign验证
 
         public override void ProcessRequest()
         {
@@ -75,43 +75,43 @@ namespace Demo.Handlers.API
         }
 
         protected override bool RequestSecurity(HttpContext context)
-        {
-            //Judge Sign Verification
+        { 
+            //判断Sign验证
             return true;
         }
 
         #endregion
 
-        #region Data encryption and decryption
+        #region 数据加密解密
 
         /// <summary>
-        /// Decryption input data
+        /// 解密输入数据
         /// </summary>
         public override System.IO.TextReader DecryptRequest(string request)
         {
-            //Decrypt
+            //解密
             /*var obj = Jayrock.Json.Conversion.JsonConvert.Import<JsonObject>(request);
             if (obj["params"] != null)
             {
                 obj["params"] = Jayrock.Json.Conversion.JsonConvert.Import(AESHelper.Decrypt(obj["params"].ToString()));
             }
             return new StringReader(obj.ToString());*/
-            //No Decrypt
+            //不解密
             return new StringReader(request);
         }
 
         /// <summary>
-        /// Encrypted output data
+        /// 加密输出数据
         /// </summary>
         public override IDictionary EncryptResponse(IDictionary response)
         {
-            //Encryption
+            //加密
             /*if (response["result"] != null)
             {
                 response["result"] = AESHelper.Encrypt(response["result"].ToString());
             }
             return response;*/
-            //No Encryption
+            //不加密
             return response;
               
         }

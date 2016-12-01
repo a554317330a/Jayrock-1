@@ -9,7 +9,7 @@ namespace Jayrock.Json.RPC
     #endregion
 
     [ Serializable ]
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]//Add the AllowMultiple attribute, so that it can be used for a number of ways
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]//加入AllowMultiple属性，使其能对一个方法多次使用
     public sealed class JsonRpcHelpOutputAttribute : Attribute, IServiceClassModifier, IMethodModifier
     {
         private string _text;
@@ -43,11 +43,11 @@ namespace Jayrock.Json.RPC
         }
 
         /// <summary>
-        /// Output field annotation
+        /// 输出字段注释
         /// </summary>
-        /// <param name="parameter">Return field</param>
-        /// <param name="type">Type</param>
-        /// <param name="explanation">Explanation</param>
+        /// <param name="parameter">返回值字段</param>
+        /// <param name="type">类型</param>
+        /// <param name="explanation">说明</param>
         public JsonRpcHelpOutputAttribute(string parameter, string explanation, JsonType type)
         {
             _text = string.Format("{0}--{1}--{2};", parameter.Trim().Replace("--", "=").Replace(";", "*"), type.ToString().ToLower(), explanation.Trim().Replace("--", "=").Replace(";", "*"));

@@ -15,37 +15,37 @@
     public enum JsonType
     {
         /// <summary>
-        /// Double precision floating point format in JavaScript
+        /// 在JavaScript中的双精度浮点格式
         /// </summary>
         Number,
 
         /// <summary>
-        /// Double quotes slash Unicode
+        /// 双引号的反斜杠转义的Unicode
         /// </summary>
         String,
 
         /// <summary>
-        /// True Or False
+        /// true 或 false
         /// </summary>
         Boolean,
 
         /// <summary>
-        /// Ordered sequence of values
+        /// 值的有序序列
         /// </summary>
         Array,
 
         /// <summary>
-        /// It can be a string, a number, a real or a fake (true/false), an empty (null), an array, an object, etc.
+        /// 它可以是一个字符串，一个数字，真的还是假（true/false），空(null )，数组，对象等
         /// </summary>
         Value,
 
         /// <summary>
-        /// The key of the unordered set
+        /// 无序集合键值对
         /// </summary>
         Object,
 
         /// <summary>
-        /// Empty，return null
+        /// empty，返回null
         /// </summary>
         Null,
     }

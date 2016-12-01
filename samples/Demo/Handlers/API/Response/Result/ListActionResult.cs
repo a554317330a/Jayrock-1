@@ -6,7 +6,7 @@ using System.Text;
 namespace Demo.Handlers.API.Response
 {
     /// <summary>
-    /// List log response
+    /// 列表记录响应
     /// </summary>
     public class ListActionResult : ActionResult
     {
@@ -16,12 +16,12 @@ namespace Demo.Handlers.API.Response
         }
 
         /// <summary>
-        /// List data
+        /// 列表数据
         /// </summary>
         public Object List { get; set; }
 
         /// <summary>
-        /// Response properties
+        /// 响应属性
         /// </summary>
         public ListProperty Property { get; set; }
     }

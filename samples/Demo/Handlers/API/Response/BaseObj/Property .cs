@@ -8,12 +8,12 @@ namespace Demo.Handlers.API.Response
     public class Property
     {
         /// <summary>
-        /// Object name
+        /// 对象名
         /// </summary>
         public String ObjectName { get; set; }
 
         /// <summary>
-        /// Whether list
+        /// 是否列表
         /// </summary>
         public virtual bool IsList { get { return false; } set{} }
     }

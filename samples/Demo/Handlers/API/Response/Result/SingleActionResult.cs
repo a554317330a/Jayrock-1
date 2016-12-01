@@ -6,7 +6,7 @@ using System.Text;
 namespace Demo.Handlers.API.Response
 {
     /// <summary>
-    /// Single record response
+    /// 单记录响应
     /// </summary>
     public class SingleActionResult : ActionResult
     {
@@ -16,12 +16,12 @@ namespace Demo.Handlers.API.Response
         }
 
         /// <summary>
-        /// Presented data
+        /// 呈现的数据
         /// </summary>
         public Object Object { get; set; }
 
         /// <summary>
-        /// Response properties
+        /// 响应属性
         /// </summary>
         public Property Property { get; set; }
     }

@@ -9,7 +9,7 @@ namespace Jayrock.Json.RPC
     #endregion
 
     [ Serializable ]
-    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]//Add the AllowMultiple attribute, so that it can be used for a number of ways
+    [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]//加入AllowMultiple属性，使其能对一个方法多次使用
     public sealed class JsonRpcHelpInputAttribute : Attribute, IServiceClassModifier, IMethodModifier
     {
         private string _text;
@@ -43,14 +43,14 @@ namespace Jayrock.Json.RPC
         }
 
         /// <summary>
-        /// Input parameter annotation
+        /// 输入参数注释
         /// </summary>
-        /// <param name="parameter">Request parameter</param>
-        /// <param name="type">Type</param>
-        /// <param name="required">Mandatory</param>
-        /// <param name="defaults">Default value</param>
-        /// <param name="explanation">Explanation</param>
-        /// <param name="testValue">The test values for the test page call</param>
+        /// <param name="parameter">请求参数</param>
+        /// <param name="type">类型</param>
+        /// <param name="required">必选</param>
+        /// <param name="defaults">默认值</param>
+        /// <param name="explanation">说明</param>
+        /// <param name="testValue">测试值，专供测试页面调用</param>
         public JsonRpcHelpInputAttribute(string parameter, string explanation, JsonType type, bool required, string defaults,string testValue)
         {
             _text = string.Format("{0}--{1}--{2}--{3}--{4}--{5};", parameter.Trim().Replace("--", "=").Replace(";", "*"), type.ToString().ToLower(), required.ToString().ToLower(), defaults.Trim().Replace("--", "=").Replace(";", "*"), explanation.Trim().Replace("--", "=").Replace(";", "*"), testValue.Trim().Replace("--", "=").Replace(";", "*"));

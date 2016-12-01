@@ -24,7 +24,7 @@
                     html = ProcessObject(obj[0], 0, false, false, false);
                     $id("Canvas").innerHTML = "<PRE class='CodeContainer'>" + html + "</PRE>";
                 } catch (e) {
-                    alert("JSON data format is not correct:\n" + e.message);
+                    alert("JSON数据格式不正确:\n" + e.message);
                     $id("Canvas").innerHTML = "";
                 }
             }
@@ -535,9 +535,9 @@
 
         </style>
         <div id="ControlsRow">
-            <input type="Button" value="Format" onclick="Process()"/>
+            <input type="Button" value="格式化" onclick="Process()"/>
             <span id="TabSizeHolder">
-                Indent
+                缩进量
                 <select id="TabSize" onchange="TabSizeChanged()">
                     <option value="1">1</option>
                     <option value="2" selected="true">2</option>
@@ -549,27 +549,27 @@
             </span>
             <label for="QuoteKeys">
                 <input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="true" /> 
-                Quotes
+                引号
             </label>
             &nbsp; 
-            <a href="javascript:void(0);" onclick="SelectAllClicked()">Select All</a>
+            <a href="javascript:void(0);" onclick="SelectAllClicked()">全选</a>
             &nbsp;
             <span id="CollapsibleViewHolder" >
                 <label for="CollapsibleView">
                     <input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked="true" /> 
-                    Display Control
+                    显示控制
                 </label>
             </span>
             <span id="CollapsibleViewDetail">
-                <a href="javascript:void(0);" onclick="ExpandAllClicked()">Open</a>
-                <a href="javascript:void(0);" onclick="CollapseAllClicked()">Close</a>
-                <a href="javascript:void(0);" onclick="CollapseLevel(3)">2 Level</a>
-                <a href="javascript:void(0);" onclick="CollapseLevel(4)">3 Level</a>
-                <a href="javascript:void(0);" onclick="CollapseLevel(5)">4 Level</a>
-                <a href="javascript:void(0);" onclick="CollapseLevel(6)">5 Level</a>
-                <a href="javascript:void(0);" onclick="CollapseLevel(7)">6 Level</a>
-                <a href="javascript:void(0);" onclick="CollapseLevel(8)">7 Level</a>
-                <a href="javascript:void(0);" onclick="CollapseLevel(9)">8 Level</a>
+                <a href="javascript:void(0);" onclick="ExpandAllClicked()">展开</a>
+                <a href="javascript:void(0);" onclick="CollapseAllClicked()">叠起</a>
+                <a href="javascript:void(0);" onclick="CollapseLevel(3)">2级</a>
+                <a href="javascript:void(0);" onclick="CollapseLevel(4)">3级</a>
+                <a href="javascript:void(0);" onclick="CollapseLevel(5)">4级</a>
+                <a href="javascript:void(0);" onclick="CollapseLevel(6)">5级</a>
+                <a href="javascript:void(0);" onclick="CollapseLevel(7)">6级</a>
+                <a href="javascript:void(0);" onclick="CollapseLevel(8)">7级</a>
+                <a href="javascript:void(0);" onclick="CollapseLevel(9)">8级</a>
             </span>
         </div>
         <div id="Canvas" class="Canvas"></div>

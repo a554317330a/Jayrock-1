@@ -38,8 +38,8 @@ namespace Jayrock.Services
         private readonly Method[] _methods;
         private readonly string[] _methodNames;             // FIXME: [ NonSerialized ]
         private readonly Method[] _sortedMethods;    // FIXME: [ NonSerialized ]
-        private readonly string _outputDescription;//output
-        private readonly string _inputDescription;//input
+        private readonly string _outputDescription;// ‰≥ˆ
+        private readonly string _inputDescription;// ‰»Î
         
         internal ServiceClass(ServiceClassBuilder classBuilder)
         {

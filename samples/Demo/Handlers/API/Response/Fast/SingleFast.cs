@@ -8,31 +8,31 @@ using Jayrock.Json;
 namespace Demo.Handlers.API.Response
 {
     /// <summary>
-    /// Quick response container for single record
+    /// 单记录快速响应容器
     /// </summary>
     public class SingleFast : IFastResult
     {
         /// <summary>
-        /// Data
+        /// 数据
         /// </summary>
         public object Object { get; set; }
 
         /// <summary>
-        /// Business response code
+        /// 业务响应代码
         /// </summary>
         public SubCode SubCode { get; set; }
 
         /// <summary>
-        /// Prompt information
+        /// 提示信息
         /// </summary>
         public String SubMsg { get; set; }
         
         /// <summary>
-        /// Object name
+        /// 对象名
         /// </summary>
         public String ObjectName { get; set; }
 
-        #region IFastResult member
+        #region IFastResult 成员
 
         public ActionResult GetActionResult()
         {
@@ -45,34 +45,34 @@ namespace Demo.Handlers.API.Response
             lar.Property.ObjectName = ObjectName;
 
 
-            //To determine whether the SubCode is set correctly
+            //判断SubCode是否设置正确
             if (lar.Error.SubCode != null)
             {
-                if (lar.Error.SubCode == Response.SubCode.SessionfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode for the -1, you need to set the value of ErrMsg!");
-                if (lar.Error.SubCode == Response.SubCode.Successful && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("When SubCode is 0, the ErrMsg value is not allowed!");
-                if (lar.Error.SubCode == Response.SubCode.SuccessfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("When SubCode is 1, you need to set the ErrMsg value!");
-                if (lar.Error.SubCode == Response.SubCode.Failing && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("When SubCode is 2, the ErrMsg value is not allowed!");
-                if (lar.Error.SubCode == Response.SubCode.FailingPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode is not 3, you need to set the value of ErrMsg!");
+                if (lar.Error.SubCode == Response.SubCode.SessionfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为-1时，需要设置ErrMsg值！");
+                if (lar.Error.SubCode == Response.SubCode.Successful && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为0时，不允许设置ErrMsg值！");
+                if (lar.Error.SubCode == Response.SubCode.SuccessfulPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为1时，需要设置ErrMsg值！");
+                if (lar.Error.SubCode == Response.SubCode.Failing && !String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode为2时，不允许设置ErrMsg值！");
+                if (lar.Error.SubCode == Response.SubCode.FailingPrompt && String.IsNullOrEmpty(lar.Error.SubMsg)) throw new Exception("SubCode不为3时，需要设置ErrMsg值！");
             }
 
-            //Packing anomaly
-            if (HttpContext.Current.IsDebuggingEnabled)//To determine whether the test environment
+            //包装异常
+            if (HttpContext.Current.IsDebuggingEnabled)//判断是否为测试环境
             {
-                if (this.Object is Exception)//If it is abnormal
+                if (this.Object is Exception)//如果为异常
                 {
                     this.Object = new JsonObject();
                 }
             }
-            else//Formal environmental use of packaging anomalies
+            else//正式环境使用包装异常
             {
-                if (this.Object is Exception)//If it is abnormal
+                if (this.Object is Exception)//如果为异常
                 {
                     this.Object = new JsonObject();
-                    lar.Error.SubMsg = "Network anomaly!";
+                    lar.Error.SubMsg = "网络不给力!";
                 }
             }
 
-            //Load JSON object
+            //装载JSON对象
             lar.Put("Obj", this.Object);
 
             JsonObject errorObject = new JsonObject();

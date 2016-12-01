@@ -402,18 +402,18 @@ namespace Jayrock.JsonRpc
 
             if (output == null)
                 throw new ArgumentNullException("output");
-
-            //Encryption processing
+            
+            //加密处理
             try
             {
                 JsonExporter(_service.EncryptResponse(response), output);
             }
-            catch (Exception ex)//Exception
+            catch (Exception ex)//异常处理
             {
                 JsonObject jsonObj = new JsonObject();
                 jsonObj.Put("error", OnError(ex, null));
                 jsonObj.Put("id", -1);
-                JsonExporter(jsonObj, output);//Output error message
+                JsonExporter(jsonObj, output);//输出错误信息
             }
             //JsonExporter(response, output);
         }
